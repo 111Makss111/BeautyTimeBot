@@ -1,7 +1,7 @@
 const TelegramBot = require("node-telegram-bot-api");
 const cron = require("node-cron");
 require("dotenv").config();
-
+const http = require("http");
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const appointments = {}; // chatId -> { date, time }
@@ -436,3 +436,15 @@ cron.schedule("0 10 * * *", () => {
     });
   }
 });
+// PORT------------
+bot.onText(/\/start/, (msg) => {
+  bot.sendMessage(msg.chat.id, "Привіт! Бот працює.");
+});
+
+const PORT = process.env.PORT || 3000;
+http
+  .createServer((req, res) => {
+    res.writeHead(200);
+    res.end("Bot is running");
+  })
+  .listen(PORT);

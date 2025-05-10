@@ -1,5 +1,11 @@
 # BeautyTimeBot
 
-1-------Перевіряти чи користувач записався ну наприклад на 10 годину якщо так то наступний запис можливий тільки через 3 години
-2-------Щоб жінка могла блокувати дати записів бо наприклад працює на іншій роботі
-3-------
+bot.onText(/\/start/, (msg) => {
+bot.sendMessage(msg.chat.id, 'Привіт! Бот працює.')
+})
+
+const PORT = process.env.PORT || 3000
+http.createServer((req, res) => {
+res.writeHead(200)
+res.end('Bot is running')
+}).listen(PORT)
